@@ -29,12 +29,9 @@ console.log('>> Hooking ntdll!RtlAllocateHeap...');
 Interceptor.attach(RtlAllocateHeapAddr, {
 	onEnter: function (args){
 		this.log_out = 'RtlAllocateHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString();
-		//console.log('RtlAllocateHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString() + ')');
-		//console.log('[+] RtlAllocateHeap called from ' + this.returnAddress.sub(6).toString());
 		},
 	onLeave: function (retval){
 		this.log_out += ') = ' + retval.toString();
-		//console.log('RtlAllocateHeap ret value: ' + retval.toString());
 		console.log(this.log_out);
 		}
 	});
@@ -49,12 +46,10 @@ console.log('>> Hooking ntdll!RtlFreeHeap...');
 Interceptor.attach(RtlFreeHeapAddr, {
 	onEnter: function(args){
 		this.log_out = 'RtlFreeHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString(); 
-		//console.log('RtlFreeHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString() + ')');
 		},
 	onLeave: function (retval){
 		this.log_out += ') = ' + retval.toString();
 		console.log(this.log_out);
-		//console.log('RtlFreeHeap ret value: ' + retval.toString());
 		}
 	});
 
@@ -70,12 +65,10 @@ console.log('>> Hooking ntdll!RtlReAllocateHeap...');
 Interceptor.attach(RtlReAllocateHeapAddr, {
 	onEnter: function(args){
 		this.log_out = 'RtlReAllocateHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString() + ', ' + args[3].toString();
-		//console.log('RtlReAllocateHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString() + ', ' + args[3].toString() + ')');
 		},
 	onLeave: function (retval){
 		this.log_out += ') = ' + retval.toString();
 		console.log(this.log_out);
-		//console.log('RtlReAllocateHeap ret value: ' + retval.toString());
 		}
 	})
 """)
