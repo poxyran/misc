@@ -28,7 +28,7 @@ var log_out;
 console.log('>> Hooking ntdll!RtlAllocateHeap...');
 Interceptor.attach(RtlAllocateHeapAddr, {
 	onEnter: function (args){
-		this.log_out = 'RtlAllocateHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString();
+		this.log_out = 'RtlAllocateHeap(' + args[0].toString() + ' , ' + args[1].toString() + ' , ' + args[2].toString();
 		},
 	onLeave: function (retval){
 		this.log_out += ') = ' + retval.toString();
@@ -45,10 +45,11 @@ Interceptor.attach(RtlAllocateHeapAddr, {
 console.log('>> Hooking ntdll!RtlFreeHeap...');
 Interceptor.attach(RtlFreeHeapAddr, {
 	onEnter: function(args){
-		this.log_out = 'RtlFreeHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString(); 
+		this.log_out = 'RtlFreeHeap(' + args[0].toString() + ' , ' + args[1].toString() + ' , ' + args[2].toString(); 
 		},
 	onLeave: function (retval){
-		this.log_out += ') = ' + retval.toString();
+		var reg_al = retval & 0x000000ff;
+		this.log_out += ') = 0x' + reg_al.toString();
 		console.log(this.log_out);
 		}
 	});
@@ -64,7 +65,7 @@ Interceptor.attach(RtlFreeHeapAddr, {
 console.log('>> Hooking ntdll!RtlReAllocateHeap...');
 Interceptor.attach(RtlReAllocateHeapAddr, {
 	onEnter: function(args){
-		this.log_out = 'RtlReAllocateHeap(' + args[0].toString() + ', ' + args[1].toString() + ', ' + args[2].toString() + ', ' + args[3].toString();
+		this.log_out = 'RtlReAllocateHeap(' + args[0].toString() + ' , ' + args[1].toString() + ' , ' + args[2].toString() + ', ' + args[3].toString();
 		},
 	onLeave: function (retval){
 		this.log_out += ') = ' + retval.toString();
