@@ -1,4 +1,4 @@
 misc
 ====
 
-Miscellaneouss programs to make your life a little less painful
+Miscellaneous programs/scripts to make your life a little less painful
