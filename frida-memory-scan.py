@@ -17,6 +17,9 @@ def main(target_process, pattern):
 				return;
 			}
 
+			// due to the lack of blacklisting in Frida, there will be 
+			// always an extra match of the given pattern (if found) because
+			// the search is done also in the memory owned by Frida.
 			Memory.scan(range.base, range.size, '%s', {
 				onMatch: function(address, size){
 						console.log('[+] Pattern found at: ' + address.toString());
